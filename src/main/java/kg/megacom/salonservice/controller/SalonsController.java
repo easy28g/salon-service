@@ -1,6 +1,9 @@
 package kg.megacom.salonservice.controller;
 
 
+import kg.megacom.salonservice.execptions.GetNullSalonExecption;
+import kg.megacom.salonservice.models.Salons;
+import kg.megacom.salonservice.models.dto.BranchesDto;
 import kg.megacom.salonservice.models.dto.SalonsDto;
 import kg.megacom.salonservice.models.objects.InputSalons;
 import kg.megacom.salonservice.service.SalonService;
@@ -25,4 +28,14 @@ public class SalonsController {
     public SalonsDto saveNewSalon(@RequestBody InputSalons inputSalons){
         return  salonService.saveNewSalon(inputSalons);
     }
+
+    @GetMapping("/all/{id}")
+    public SalonsDto oneSalon(@PathVariable Long id){
+//        return salonService.findAll().stream()
+//                .filter(salonsDto -> salonsDto.getId().equals(id))
+//                .findFirst()
+//                .orElseThrow(()-> new GetNullSalonExecption("Null Value of Salon"));
+        return salonService.findById(id);
+    }
+
 }
